@@ -1,15 +1,14 @@
 
-
 import  { useEffect, useState } from "react";
 import useGlobalContextProvider from "../ContextApi";
 import QuizStartHeader from "../components/QuizStartPage/QuizStartHeader";
 import QuizStartQuestions from "../components/QuizStartPage/QuizStartQuestions";
 import { Navigate } from "react-router-dom";
- 
+
 
 function Page() {
+  
   const { quizToStartObject} = useGlobalContextProvider();
- 
   const { selectQuizToStart } = quizToStartObject;
   const [parentTimer, setParentTimer] = useState(0);
 
@@ -19,9 +18,10 @@ function Page() {
     }
   }, []);
 
-  function OnUpdateTime(currentTime) {
+  function onUpdateTime(currentTime) {
     setParentTimer(currentTime);
   }
+  console.log("i'm printing" + typeof(onUpdateTime));
    console.log( 'print the type of' + typeof(handleTime));
   return (
     <div className="relative poppins flex flex-col px-24 mt-[35px] ">
@@ -39,7 +39,7 @@ function Page() {
         <>
           <QuizStartHeader parentTimer={parentTimer} />
           <div className="mt-10 flex items-center justify-center">
-            <QuizStartQuestions OnUpdateTime={OnUpdateTime} />
+            <QuizStartQuestions onUpdateTime={onUpdateTime} />
           </div>
         </>
       )}
